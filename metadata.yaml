@@ -1,0 +1,341 @@
+# LAYER 1 — DATASET IDENTITY
+
+dataset:
+  name: "Z+jets OmniFold Unfolding using ATLAS pseudodata"
+  description: >
+    Per-event OmniFold unfolding weights for a Z+jets measurement
+    using pseudodata mimicking an ATLAS detector environment.
+    Three HDF5 files are provided: a nominal result and two systematic
+    variations representing generator and sample composition uncertainties.
+  experiment: "ATLAS"
+  process: "pp -> Z + jets -> ll + jets"
+  collision_energy_TeV: null  #to be filled by the person doing the experiment
+  doi: null        #to be filled on publication
+  hepdata_id: null #to be filled on HEPData submission
+
+# LAYER 2 — SIMULATION AND GENERATION
+
+simulation:
+  nominal:
+    generator: "MadGraph5_aMC@NLO"
+    version: null           
+    tune: null              
+    parton_shower: "Pythia8"
+    pdf_set: null           
+    process_order: null     
+    notes: null             # any additional generation details
+
+# LAYER 3 — EVENT SELECTION
+
+event_selection:
+  description: >
+    Kinematic requirements applied to all events before unfolding.
+    All events in the HDF5 files have passed these selection criteria.
+
+  leptons:
+    leading_lepton_pT_GeV: null
+    subleading_lepton_pT_GeV: null
+    lepton_eta: null
+    lepton_type: null
+    dilepton_mass_GeV: null
+
+  jets:
+    algorithm: null              
+    radius_parameter: null
+    min_jet_pT_GeV: null
+    max_jet_eta: null
+    min_tracks_per_jet: null
+
+  other:
+    min_jets: null
+    additional_cuts: null
+
+# LAYER 4 — FILE INVENTORY
+
+
+files:
+  - filename: "multifold.h5"
+    role: "nominal"
+    n_events: 418014
+    description: >
+      Primary OmniFold unfolding result using MadGraph5 simulation.
+      Contains the full set of weights including ensemble members,
+      bootstrap replicas, and all systematic variations.
+
+    columns:
+      observables:
+        description: >
+          Reconstructed physics quantities per event. Identical across
+          all three files. All values are detector-level quantities
+          after event selection.
+        fields:
+          dilepton:
+            - name: "pT_ll"
+              description: "Transverse momentum of the dilepton system (GeV)"
+            - name: "y_ll"
+              description: "Rapidity of the dilepton system"
+          lepton1:
+            - name: "pT_l1"
+              description: "Transverse momentum of leading lepton (GeV)"
+            - name: "eta_l1"
+              description: "Pseudorapidity of leading lepton"
+            - name: "phi_l1"
+              description: "Azimuthal angle of leading lepton (rad)"
+          lepton2:
+            - name: "pT_l2"
+              description: "Transverse momentum of subleading lepton (GeV)"
+            - name: "eta_l2"
+              description: "Pseudorapidity of subleading lepton"
+            - name: "phi_l2"
+              description: "Azimuthal angle of subleading lepton (rad)"
+          trackjet1:
+            - name: "pT_trackj1"
+              description: "Transverse momentum of leading track jet (GeV)"
+            - name: "y_trackj1"
+              description: "Rapidity of leading track jet"
+            - name: "phi_trackj1"
+              description: "Azimuthal angle of leading track jet (rad)"
+            - name: "m_trackj1"
+              description: "Mass of leading track jet (GeV)"
+            - name: "tau1_trackj1"
+              description: "1-subjettiness of leading track jet"
+            - name: "tau2_trackj1"
+              description: "2-subjettiness of leading track jet"
+            - name: "tau3_trackj1"
+              description: "3-subjettiness of leading track jet"
+            - name: "Ntracks_trackj1"
+              description: "Number of tracks in leading track jet"
+          trackjet2:
+            - name: "pT_trackj2"
+              description: "Transverse momentum of subleading track jet (GeV)"
+            - name: "y_trackj2"
+              description: "Rapidity of subleading track jet"
+            - name: "phi_trackj2"
+              description: "Azimuthal angle of subleading track jet (rad)"
+            - name: "m_trackj2"
+              description: "Mass of subleading track jet (GeV)"
+            - name: "tau1_trackj2"
+              description: "1-subjettiness of subleading track jet"
+            - name: "tau2_trackj2"
+              description: "2-subjettiness of subleading track jet"
+            - name: "tau3_trackj2"
+              description: "3-subjettiness of subleading track jet"
+            - name: "Ntracks_trackj2"
+              description: "Number of tracks in subleading track jet"
+
+      weights:
+        description: >
+          All weight columns. Apply weights_nominal to compute the
+          primary unfolded result. All weights should be multiplied
+          by weight_mc before use.
+
+        base:
+          - name: "weight_mc"
+            description: >
+              Base Monte Carlo generator weight. Must be multiplied
+              with all other weights before computing any observable.
+          - name: "weights_nominal"
+            description: >
+              Primary OmniFold unfolding result. Apply this weight
+              to MC events to reproduce the unfolded data distribution.
+            range: [0.000002, 0.075667]
+            mean: 0.004329
+
+        ensemble:
+          description: >
+            100 independent OmniFold trainings on bootstrap replicas
+            of the dataset. Used to estimate statistical uncertainty
+            on the unfolding. To compute uncertainty bands, compute
+            your observable with each ensemble weight and take the
+            standard deviation across the 100 results.
+          columns: "weights_ensemble_0 to weights_ensemble_99"
+          count: 100
+
+        bootstrap:
+          description: >
+            Bootstrap replicas for uncertainty estimation.
+            MC and data bootstraps are provided separately.
+          mc_columns: "weights_bootstrap_mc_0 to weights_bootstrap_mc_24"
+          mc_count: 25
+          data_columns: "weights_bootstrap_data_0 to weights_bootstrap_data_24"
+          data_count: 25
+
+        data_driven:
+          - name: "weights_dd"
+            description: >
+              Data-driven reweighting component. Purpose and
+              construction methodology to be documented by analyst.
+          - name: "target_dd"
+            description: >
+              Continuous float column (range ~0.000001 to 0.061)
+              associated with the data-driven reweighting. Despite
+              the name implying a binary classifier target, values
+              are continuous. Exact interpretation to be documented
+              by analyst.
+
+        systematics:
+          description: >
+            Each systematic weight represents a variation of the
+            nominal result under a specific source of uncertainty.
+            Apply in place of weights_nominal to assess impact.
+
+          detector:
+            - name: "weights_pileup"
+              description: "Pileup reweighting uncertainty"
+              type: "normalization"
+            - name: "weights_muEffReco"
+              description: "Muon reconstruction efficiency uncertainty"
+              type: "efficiency"
+            - name: "weights_muEffIso"
+              description: "Muon isolation efficiency uncertainty"
+              type: "efficiency"
+            - name: "weights_muEffTrack"
+              description: "Muon track efficiency uncertainty"
+              type: "efficiency"
+            - name: "weights_muEffTrig"
+              description: "Muon trigger efficiency uncertainty"
+              type: "efficiency"
+            - name: "weights_muCalID"
+              description: "Muon momentum calibration — inner detector"
+              type: "calibration"
+            - name: "weights_muCalMS"
+              description: "Muon momentum calibration — muon spectrometer"
+              type: "calibration"
+            - name: "weights_muCalResBias"
+              description: "Muon momentum resolution bias uncertainty"
+              type: "calibration"
+            - name: "weights_muCalScale"
+              description: "Muon momentum scale uncertainty"
+              type: "calibration"
+            - name: "weights_trackEffMain"
+              description: "Track reconstruction efficiency — main"
+              type: "efficiency"
+            - name: "weights_trackEffJet"
+              description: "Track reconstruction efficiency — jet region"
+              type: "efficiency"
+            - name: "weights_trackFake"
+              description: "Fake track rate uncertainty"
+              type: "efficiency"
+            - name: "weights_trackPtScale"
+              description: "Track transverse momentum scale uncertainty"
+              type: "calibration"
+
+          theory:
+            - name: "weights_theoryPSjet"
+              description: "Parton shower uncertainty — jet activity"
+              type: "theory"
+            - name: "weights_theoryPSsoft"
+              description: "Parton shower uncertainty — soft radiation"
+              type: "theory"
+            - name: "weights_theoryMPI"
+              description: "Multiple parton interaction uncertainty"
+              type: "theory"
+            - name: "weights_theoryPSscale"
+              description: "Parton shower scale uncertainty"
+              type: "theory"
+            - name: "weights_theoryAlphaS"
+              description: "Strong coupling constant (alphaS) uncertainty"
+              type: "theory"
+            - name: "weights_theoryQCD"
+              description: "QCD higher-order correction uncertainty"
+              type: "theory"
+            - name: "weights_theoryPDF"
+              description: "Parton distribution function uncertainty"
+              type: "theory"
+            - name: "weights_topBackground"
+              description: "Top quark background normalization uncertainty"
+              type: "background"
+            - name: "weights_lumi"
+              description: "Integrated luminosity uncertainty"
+              type: "normalization"
+
+  - filename: "multifold_sherpa.h5"
+    role: "systematic_variation"
+    variation_type: "generator"
+    n_events: 326430
+    description: >
+      Alternative generator variation using Sherpa instead of MadGraph5.
+      Treated as a systematic uncertainty on the generator choice.
+      Contains observables, weight_mc, weights_nominal, and MC bootstrap
+      replicas only, no ensemble or detector/theory systematics.
+    generator: "Sherpa"
+    columns:
+      observables: "identical to multifold.h5 (cols 0-23)"
+      weights:
+        - "weight_mc"
+        - "weights_nominal"
+        - "weights_bootstrap_mc_0 to weights_bootstrap_mc_24"
+
+  - filename: "multifold_nonDY.h5"
+    role: "systematic_variation"
+    variation_type: "sample_composition"
+    n_events: 433397
+    description: >
+      Alternative sample composition variation including additional
+      EW Zjj/VBF and diboson processes not present in the nominal sample.
+      Treated as a systematic uncertainty on background modeling.
+      Contains observables, weight_mc, and weights_nominal only.
+    generator: "MadGraph5_aMC@NLO"
+    additional_processes:
+      - "EW Zjj/VBF"
+      - "diboson"
+    columns:
+      observables: "identical to multifold.h5 (cols 0-23)"
+      weights:
+        - "weight_mc"
+        - "weights_nominal"
+
+# LAYER 5 — OMNIFOLD PROVENANCE (partially optional)
+
+omnifold:
+  description: >
+    Provenance information for the OmniFold unfolding procedure.
+    Fields marked as optional are not required for reuse of the
+    weights but are recommended for full reproducibility.
+
+  algorithm: "OmniFold"
+  reference: "arxiv link to the original experiment"
+
+  training:
+    n_iterations: null
+    n_ensemble_members: 100
+    n_bootstrap_mc: 25
+    n_bootstrap_data: 25
+
+    input_features:
+      description: >
+        Observable columns used as input features to the OmniFold
+        classifier. A user applying these weights to a new observable
+        must ensure their events pass the same feature space.
+      columns: null
+
+    data_mc_split:
+      description: >
+        How data and MC events are distinguished within the HDF5 files.
+      method: null
+      notes: null               #clarification of target_dd if known
+
+  model:                        #Optional but good for full reproducibility
+    description: >
+      Neural network architecture and training configuration.
+      This section is optional but strongly recommended for
+      long-term reproducibility.
+    architecture: null
+    hidden_units: null
+    activation: null
+    optimizer: null
+    learning_rate: null
+    batch_size: null
+    epochs: null
+    saved_model_path: null      # path to saved model weights if archived
+
+  software:                     # Optional for full reproducibility
+    description: >
+      Software environment used to produce the weights.
+      Required to exactly reproduce the training.
+    omnifold_version: null
+    python_version: null
+    tensorflow_version: null
+    pytorch_version: null
+    numpy_version: null
+    additional_packages: null   #Any other relevant packages
