@@ -397,7 +397,7 @@ if __name__ == "__main__":
         ensemble_cols = [f"weights_ensemble_{i}" for i in range(100)]
         ensemble_weights = df[ensemble_cols].values
 
-        print("Running on real OmniFold data...")
+        print("testing...")
         result = weighted_histogram(
             values=df["pT_ll"].values,
             weights=df["weights_nominal"].values,
