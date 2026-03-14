@@ -69,9 +69,9 @@ The HDF5 data files are not included in this repository due to file size.
 
 Three HDF5 files containing pre-calculated OmniFold weights for pseudo-data, that mimics a real ATLAS measurement:
 
-multifold.h5 — the nominal result, based on MG5 simulation
-multifold_sherpa.h5 — an alternative generator (Sherpa), treated as a systematic uncertainty
-multifold_nonDY.h5 — an alternative sample composition (includes EW Zjj/VBF and diboson), treated as another systematic uncertainty
+multifold.h5 - the nominal result, based on MG5 simulation 
+multifold_sherpa.h5 - an alternative generator (Sherpa), treated as a systematic uncertainty 
+multifold_nonDY.h5 - an alternative sample composition (includes EW Zjj/VBF and diboson), treated as another systematic uncertainty 
 These files can be downloaded from this Zenodo link(https://zenodo.org/records/11507450). Be sure to work with the files under files/pseudodata.
 
 Download the files and place them in a `data/` folder at the root of the project.
