@@ -1,11 +1,21 @@
 # GSoC 2026 Proposal: Standardizing the Publication, Preservation, and Reuse of ML-Based Unfolding Results
 
-**Organization:** CERN-HSF (HEP Software Foundation)
-**Project:** Omnifold - Standardizing the publication, preservation, and reuse of ML-based unfolding results
-**Mentors:** Tanvi Wamorkar, Benjamin Nachman
-**Contributor:** Omkar Anand Mishra
-**GitHub:** [https://github.com/Nik172](https://github.com/Nik172)
-**Email:** omkar172ftw@gmail.com
+**Organization:** CERN-HSF (HEP Software Foundation)     
+**Project:** Omnifold - Standardizing the publication, preservation, and reuse of ML-based unfolding results    
+**Mentors:** Tanvi Wamorkar, Benjamin Nachman     
+**Contributor:** Omkar Anand Mishra     
+**GitHub:** [https://github.com/Nik172](https://github.com/Nik172)    
+**LinkedIn:** [Link](https://www.linkedin.com/in/omkar-anand-mishra-675377321/)
+**Email:** omkar172ftw@gmail.com     
+
+---
+
+## Synopsis
+
+In this project, we aim to create a Python package that produces OmniFold weights in a standardized format, accompanied by data and metadata specifications for
+per-event weights, dataset selections, and optional model information. The project will also provide user-facing tools to apply weights, compute observables, and generate 
+publication-quality plots, along with reference examples demonstrating integration with HEPData. This will enable physicists to easily publish, preserve, and reuse ML-based 
+unfolding results, advancing the FAIR data ecosystem in HEP and maximizing the impact of these analyses.
 
 ---
 
@@ -20,23 +30,38 @@ I am a second year B.Tech student at the Indian Institute of Technology(IIT) Bhu
 - **Tools:** Git, GitHub, Jupyter, Linux
 - **Domain Knowledge:** Machine learning, scientific data formats, software testing, neural network training, data pipelines, and a strong interest in high energy physics
 
-### Prior Work
--Evaluation Task for this project
--Personal projects in machine learning and data science (link to GitHub)
+### My Prior Works
+- **GSoC 2026 Evaluation Task** - analyzed three OmniFold HDF5 files from an
+  ATLAS Z+jets pseudodata dataset, designed a 5-layer YAML metadata schema,
+  and implemented a tested weighted histogram function with ensemble uncertainty
+  bands.
+  [Repository](https://github.com/Nik172/OmnifoldUnfoldingAndHistogram)
+
+- **Causal Retrieval System for Conversational Analytics** - hybrid GraphRAG +
+  Vector RAG system built for Inter-IIT Tech Meet '25. Designed the preprocessing, 
+  embedding, and storage pipelines for a dataset of about 20,000 real conversation transcripts.
+  Achieved 0.74 faithfulness and 0.77 relevance scores.
+  [Repository](https://github.com/Nik172/ByteMe-Causal-extractor)
+
+- **PDD Dysarthria Speech Normalizer** - fine-tuned OpenAI Whisper with LoRA
+  adapters on dysarthric speech corpus, reducing Word Error Rate by ~18%.
+  Built an end-to-end ASR evaluation pipeline with custom audio preprocessing.
+  [Repository](https://github.com/Nik172/EazeVoice)
+
+- **Next Word Predictor using Transformer** - fine-tuned GPT-2 on WikiText-2
+  achieving a mean test perplexity of 17.36 using HuggingFace Trainer with
+  gradient accumulation and optimized batching.
+  [Repository](https://github.com/Nik172/ML_next_word_predictor)
+
+- **LLM Powered Autonomous Research Agent** - LangChain RAG pipeline with
+  Groq LLaMA-3, FAISS vector store, and research paper QA functionality.
+  [Repository](https://github.com/Nik172/AI_RAG_Research_Agent)
+
+- **STAGATE Implementation and Perturbation Analysis** - implementation and
+  perturbation analysis of the STAGATE spatial transcriptomics model.
+  [Repository](https://github.com/Nik172/Basic_STAGATE_implementationAndPerturbationAnalysis)
 
 ---
-
-## Synopsis
-
-[3-4 sentences summarizing the project. What problem does it solve? What will
-you build? Why does it matter for the HEP community?]
-
----
-
-### Education
-- **Institution:** IIT Bhubaneswar
-- **Degree:** B.Tech in Civil Engineering 
-- **Year:** 2nd year (expected graduation: 2028)
 
 ## Background and Motivation
 
