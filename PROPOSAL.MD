@@ -22,7 +22,7 @@ unfolding results, advancing the FAIR data ecosystem in HEP and maximizing the i
 
 ## About Me
 
-I am a second year B.Tech student at the Indian Institute of Technology(IIT) Bhubaneswar. I have experience working in machine learning, data science, and NLM. I am deeply fascinated by particle physics and enjoy reading about the latest developments in the field. I am interested in this project because it gives me the opportunity to contribute to the physics community and use my software and AIML skills to make something meaningful that will be helpful for physicists around the world.
+I am a second year B.Tech student at the Indian Institute of Technology(IIT) Bhubaneswar. I have experience working in machine learning, data science, and NLP. I have always been fascinated by particle physics and enjoy reading about the latest developments in the field. I am interested in this project because it gives me the opportunity to contribute to the physics community and use my software and AIML skills to make something meaningful that will be helpful for physicists around the world.
 
 ### Relevant Skills
 - **Programming:** Python, C, C++, bash
@@ -86,8 +86,8 @@ measurement and found:
 
 ### Why This Matters
 This project directly addresses the HEP community's broader push toward FAIR
-data - Findable, Accessible, Interoperable, and Reusable. Currently due to the
-lack of standardization, physicists who want to reuse OmniFold results must
+data - Findable, Accessible, Interoperable, and Reusable data. Currently due to
+the lack of standardization, physicists who want to reuse OmniFold results must
 reverse-engineer the files or contact the original authors for clarification,
 or risk misinterpreting the data. This creates a barrier to reuse and limits
 the impact of these unfolding results.
@@ -144,7 +144,7 @@ RECAST are building across the rest of HEP.
 
 ---
 
-#### Phase 2: Core Python Package (June 22 - July 10)
+#### Phase 2: Core Python Package (June 15 - July 10)
 
 **Week 4 (June 15 - June 21) - Observable Definitions**
 - Define a standard observable description format including:
@@ -231,7 +231,7 @@ the tiered required/optional structure and single-file approach.
 
 **Task 3 - Coding Exercise**
 Implemented a self-contained "weighted_histogram()" function with ensemble
-uncertainty bands, robust edge case handling, and lots of passing pytest tests.
+uncertainty bands, robust edge case handling, and 14 passing pytest tests.
 
 The evaluation task repository is available at:
 [https://github.com/Nik172/OmnifoldUnfoldingAndHistogram](https://github.com/Nik172/OmnifoldUnfoldingAndHistogram)
@@ -249,5 +249,7 @@ The evaluation task repository is available at:
 ## Why Me
 
 I am very interested in particle physics and want to leave a lasting contribution that helps physicists in the long run. My background in ML, neural network training, and data pipelines will be very useful in the project. Also, the evaluation tasks showed that I am capable of handling unfamiliar or novel physics based concepts that I may come across while working on the project, as I had no prior HEP background but was able to analyze the dataset, design the schema, and write tested code from scratch. Since completing the evaluation tasks, I have become very familiar with the physics terminologies and concepts used/needed for this project and thus am confident that I can contribute to the project at a high level.
+
+
 
 **thank you!**
