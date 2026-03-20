@@ -213,52 +213,25 @@ RECAST are building across the rest of HEP.
 
 ---
 
-## Technical Approach
-
-### Metadata Schema
-[Briefly describe your schema design — reference the 5-layer structure
-from your evaluation task. Mention YAML format, required vs optional fields,
-the tiered approach for reuse vs full reproducibility.]
-
-### Python Package Architecture
-[Describe how you'd structure the package — e.g. separate modules for
-reading, writing, validation, observables, plotting, HEPData export.
-Mention your approach to testing.]
-
-### HEPData Integration
-[Describe what you know about HEPData's submission format and how
-the standardized files would map onto it.]
-
-### Key Technical Challenges
-- **Variable ensemble sizes** — the schema must accommodate analyses
-  with different numbers of ensemble members
-- **Cross-experiment naming conventions** — need a controlled vocabulary
-  or mapping layer for observable names
-- **Long-term reproducibility** — storing ML model weights alongside
-  unfolding results without bloating file sizes
-- [Add any others you can think of]
-
----
-
 ## Evaluation Task Summary
 
 As part of the application process I completed all three evaluation tasks:
 
-**Task 1 — Exploratory Data Analysis**
+**Task 1 - Exploratory Data Analysis**
 Analyzed three OmniFold HDF5 files from an ATLAS Z+jets pseudodata dataset.
 Classified all 200 columns across 418,014 events into observables, weight
 subcategories, and metadata. Identified 8 critical gaps for reuse and 8
 standardization challenges across experiments.
 
-**Task 2 — Metadata Schema Design**
+**Task 2 - Metadata Schema Design**
 Designed a 5-layer YAML metadata schema covering dataset identity, simulation
 provenance, event selection, full column documentation, and OmniFold training
 provenance. Wrote a justification document explaining design decisions including
 the tiered required/optional structure and single-file approach.
 
-**Task 3 — Coding Exercise**
-Implemented a self-contained `weighted_histogram()` function with ensemble
-uncertainty bands, robust edge case handling, and 14 passing pytest tests.
+**Task 3 - Coding Exercise**
+Implemented a self-contained "weighted_histogram()" function with ensemble
+uncertainty bands, robust edge case handling, and lots of passing pytest tests.
 
 The evaluation task repository is available at:
 [https://github.com/Nik172/OmnifoldUnfoldingAndHistogram](https://github.com/Nik172/OmnifoldUnfoldingAndHistogram)
@@ -267,23 +240,14 @@ The evaluation task repository is available at:
 
 ## Availability
 
-- **Hours per week:** [e.g. 35 hours]
+- As I have no other commitments during the summer, I have a very flexible schedule and can work for extra hours if needed to ensure that the project stays on track according to the proposed timeline.
+- **Probable hrs/week:** 35-40 hrs
 - **Timezone:** IST (UTC+5:30)
-- **Potential conflicts:** [Any exams, travel, internships during May-August]
-- **Other GSoC applications:** [mention or not — your choice]
 
 ---
 
 ## Why Me
 
-[3-4 sentences. Connect your specific skills and the evaluation task work
-to why you're the right person for this project. Be direct and confident.]
+I am very interested in particle physics and want to leave a lasting contribution that helps physicists in the long run. My background in ML, neural network training, and data pipelines will be very useful in the project. Also, the evaluation tasks showed that I am capable of handling unfamiliar or novel physics based concepts that I may come across while working on the project, as I had no prior HEP background but was able to analyze the dataset, design the schema, and write tested code from scratch. Since completing the evaluation tasks, I have become very familiar with the physics terminologies and concepts used/needed for this project and thus am confident that I can contribute to the project at a high level.
 
----
-
-## References
-
-- OmniFold repository: https://github.com/wamorkart/omnifold-hepdata
-- OmniFold paper: https://arxiv.org/abs/1911.09107
-- HEPData: https://www.hepdata.net
-- FAIR data principles: https://www.go-fair.org/fair-principles/
+**thank you!**
